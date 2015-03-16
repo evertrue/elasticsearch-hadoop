@@ -98,7 +98,7 @@ class ScalaValueReader extends ValueReader with SettingsAware {
   protected def parseBinary(value: Array[Byte]) = { value }
   
   def date(value: String, parser: Parser) = { checkNull(parseDate, value, parser) }
-  protected def parseDate(value: String, parser:Parser) = { if (parser.currentToken()== VALUE_NUMBER) new Date(parser.longValue()) else value }
+  protected def parseDate(value: String, parser:Parser) = { if (parser.currentToken()== VALUE_NUMBER) parser.longValue().toLong else value }
   
   def setSettings(settings: Settings) = { emptyAsNull = settings.getFieldReadEmptyAsNull() }
   
